@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC3799F41E7CD2C200D11E9D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC3799F31E7CD2C200D11E9D /* main.cpp */; };
+		DC3799FB1E7CD3E900D11E9D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC3799FA1E7CD3E900D11E9D /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		DC3799F01E7CD2C200D11E9D /* countlines */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = countlines; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC3799F31E7CD2C200D11E9D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DC3799FA1E7CD3E900D11E9D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 		DC3799E71E7CD2C200D11E9D = {
 			isa = PBXGroup;
 			children = (
-				DC3799F21E7CD2C200D11E9D /* countlines */,
+				DC3799FA1E7CD3E900D11E9D /* main.cpp */,
 				DC3799F11E7CD2C200D11E9D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,14 +52,6 @@
 				DC3799F01E7CD2C200D11E9D /* countlines */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		DC3799F21E7CD2C200D11E9D /* countlines */ = {
-			isa = PBXGroup;
-			children = (
-				DC3799F31E7CD2C200D11E9D /* main.cpp */,
-			);
-			path = countlines;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +111,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC3799F41E7CD2C200D11E9D /* main.cpp in Sources */,
+				DC3799FB1E7CD3E900D11E9D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
