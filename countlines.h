@@ -57,7 +57,7 @@ inline void countlines(string input_file, string output_file, int n_split, strin
     if (splitfiles.size() != n_split && splitfiles.size() != n_split + 1)
         throw runtime_error("incorrect number of split files");
     for (int i=0; i<(int)splitfiles.size(); i++){
-        shell_cmd = "sort " + splitfiles[i] + " | uniq -c > " + splitfiles[i] + ".count";
+        shell_cmd = "sort " + splitfiles[i] + " | uniq -c | awk '{print $1\"\\t\"$2}' > " + splitfiles[i] + ".count";
         cout << shell_cmd << endl;
         system(shell_cmd.c_str());
     }
