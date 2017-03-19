@@ -14,11 +14,16 @@
 #include <iostream>
 #include <fstream>
 #include <cstdint>
+#include <sstream>
+#include <exception>
 
 using namespace std;
 
 inline int64_t wc_l(string filename);
 inline vector<string> getsplitfiles(string dir);
+inline vector<string> getcountfiles(string dir);
+inline bool checksort(string filename);
+inline vector<string> countlines_split(const string &s, char delim, bool rm_empty=true);
 
 inline void countlines(string input_file, string output_file, int n_split, string tmpdir)
 {
@@ -53,6 +58,12 @@ inline void countlines(string input_file, string output_file, int n_split, strin
         cout << shell_cmd << endl;
         system(shell_cmd.c_str());
     }
+    
+    // check if count file properly sorted
+    vector<string> countfiles = getcountfiles(tmpdir + "/tmp_countlines");
+    checksort(countfiles[0]);
+    
+    // merge count files
     
     
 }
@@ -95,4 +106,67 @@ inline vector<string> getsplitfiles(string dir)
     fs_file.close();
     return splitfiles;
 }
+
+inline vector<string> getcountfiles(string dir)
+{
+    // get splitfiles 
+    vector<string> splitfiles;
+    string shell_cmd = "ls " + dir + "/splitfile*.count > " + dir+ "/filenames.txt";
+    cout << shell_cmd << endl;
+    system(shell_cmd.c_str());
+    
+    // read splitfiles
+    ifstream fs_file(dir+ "/filenames.txt");
+    if (!fs_file.is_open())
+        throw runtime_error("fail to open " + dir+ "/filenames.txt");
+    while(1){
+        string buf;
+        getline(fs_file, buf);
+        if (fs_file.eof())
+            break;
+        splitfiles.push_back(buf);
+    }
+    fs_file.close();
+    return splitfiles;
+}
+
+inline bool checksort(string filename)
+{
+    ifstream fs_file(filename);
+    if (!fs_file.is_open())
+        throw runtime_error("fail to open " + filename);
+    int n = 0;
+    string last_line = "!";
+    while(1){
+        string buf;
+        getline(fs_file, buf);
+        if (fs_file.eof())
+            break;
+        n++;
+        vector<string> buf_vec = countlines_split(buf, ' ', true);
+        if (buf_vec.size()!=2)
+            throw runtime_error("incorrect format at line " + to_string(n));
+        if (buf_vec[1] < last_line)
+            throw runtime_error("incorrect order at line " + to_string(n));
+    }
+    fs_file.close();
+    return true;
+}
+
+inline vector<string> countlines_split(const string &s, char delim, bool rm_empty) 
+{
+    stringstream ss(s);
+    string item;
+    vector<string> tokens;
+    while (getline(ss, item, delim)) {
+        if (rm_empty){
+            if (item!="") tokens.push_back(item);
+        }else{
+            tokens.push_back(item);
+        }
+    }
+    return tokens;
+}
+
+
 #endif /* countlines_h */
