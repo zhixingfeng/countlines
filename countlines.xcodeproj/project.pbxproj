@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		DC3799F01E7CD2C200D11E9D /* countlines */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = countlines; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3799FA1E7CD3E900D11E9D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DC3799FC1E7CD6AE00D11E9D /* countlines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = countlines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +42,7 @@
 		DC3799E71E7CD2C200D11E9D = {
 			isa = PBXGroup;
 			children = (
+				DC3799FC1E7CD6AE00D11E9D /* countlines.h */,
 				DC3799FA1E7CD3E900D11E9D /* main.cpp */,
 				DC3799F11E7CD2C200D11E9D /* Products */,
 			);
