@@ -152,7 +152,7 @@ inline bool checksort(string filename)
         if (fs_file.eof())
             break;
         n++;
-        vector<string> buf_vec = countlines_split(buf, ' ', true);
+        vector<string> buf_vec = countlines_split(buf, '\t', true);
         if (buf_vec.size()!=2)
             throw runtime_error("incorrect format at line " + to_string(n));
         if (buf_vec[1] < last_line)
@@ -191,10 +191,12 @@ inline void countlines_merge(string infile, string outfile)
     while (1){
         string buf;
         getline(fs_infile, buf);
-        if (fs_infile.eof())
+        if (fs_infile.eof()){
+            fs_outfile << last_count << '\t' << last_line << endl;
             break;
+        }
         n++;
-        vector<string> buf_vec = countlines_split(buf, ' ', true);
+        vector<string> buf_vec = countlines_split(buf, '\t', true);
         if (buf_vec.size()!=2)
             throw runtime_error("incorrect format at line " + to_string(n));
         if (buf_vec[1] < last_line)
