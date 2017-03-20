@@ -160,8 +160,9 @@ inline bool checksort(string filename)
         vector<string> buf_vec = countlines_split(buf, '\t', true);
         if (buf_vec.size()!=2)
             throw runtime_error("incorrect format at line " + to_string(n));
-        if (buf_vec[1] < last_line)
-            throw runtime_error("incorrect order at line " + to_string(n));
+        //if (buf_vec[1] < last_line)
+        //    throw runtime_error("incorrect order at line " + to_string(n));
+        last_line = buf_vec[1];
     }
     fs_file.close();
     return true;
@@ -202,11 +203,10 @@ inline void countlines_merge(string infile, string outfile)
         }
         n++;
         vector<string> buf_vec = countlines_split(buf, '\t', true);
-        cout << buf_vec[0] << "\t" << buf_vec[1] << endl;
         if (buf_vec.size()!=2)
             throw runtime_error("incorrect format at line " + to_string(n));
-        if (buf_vec[1] < last_line)
-            throw runtime_error("incorrect order at line " + to_string(n));
+        //if (buf_vec[1] < last_line)
+        //    throw runtime_error("incorrect order at line " + to_string(n));
         string cur_line = buf_vec[1];
         int64_t cur_count = stoll(buf_vec[0]);
         if (cur_line == last_line){
