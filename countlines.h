@@ -63,15 +63,20 @@ inline void countlines(string input_file, string output_file, int n_split, strin
     }
     
     // check if count file properly sorted
+    cout << "check sort" << endl;
     vector<string> countfiles = getcountfiles(tmpdir + "/tmp_countlines");
-    checksort(countfiles[0]);
-    
+    for (int i=0; i<(int)countfiles.size(); i++){
+        cout << countfiles[i] << endl;
+        checksort(countfiles[i]);
+    }
     // merge count files by sort -m 
+    cout << "merge sort by sort -m" << endl;
     shell_cmd = "sort -m -k2,2 " + tmpdir + "/tmp_countlines/splitfile*.count > " + tmpdir + "/tmp_countlines/merge.count";
     cout << shell_cmd << endl;
     system(shell_cmd.c_str());
     
     // merge counts of merge.count file
+    cout << "merge counts" << endl;
     countlines_merge(tmpdir + "/tmp_countlines/merge.count",  output_file);
     
     
